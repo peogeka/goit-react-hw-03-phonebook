@@ -34,7 +34,8 @@ export class ContactForm extends Component {
 
   handleOnSubmit = (values, actions) => {
     const { contacts } = this.props;
-    if (contacts.find(contact => contact.name === values.name) === undefined) {
+    const lowerCaseName = values.name.toLowerCase();
+    if (contacts.find(contact => contact.name.toLowerCase() === lowerCaseName) === undefined) {
       const item = { id: nanoid(), name: values.name, number: values.number };
       this.props.addContact(item);
       actions.resetForm();
